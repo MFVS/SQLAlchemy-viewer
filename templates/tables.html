@@ -1,0 +1,29 @@
+{% extends 'base.html' %}{% block head %} {% endblock head %} {% block body %}
+<style>
+  h1 {
+    font-size: 10vw;
+    text-align: center;
+  }
+</style>
+
+<h1>{{ tabulka [0]|upper}}{{tabulka[1:] }}</h1>
+<div
+  class="container d-flex rounded justify-content-center col-md-offset-2 bg-light w-75 my-5 overflow-auto"
+  style="height: 400px"
+>
+  <table>
+    <tr>
+      {% for i in columns %}
+      <th class="px-3 border-bottom">{{ i }}</th>
+      {% endfor %}
+    </tr>
+    {% for item in result %}
+    <tr class="column">
+      {% for column in columns %}
+      <td class="px-3">{{ item[column] }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock body %}
