@@ -4,7 +4,6 @@ db = SQLAlchemy()
 
 class Books(db.Model):
     __tablename__ = 'books'
-    
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String, nullable = False)
     release_date = db.Column(db.Date, nullable = False)

@@ -1,15 +1,25 @@
 from flask import Flask, render_template, redirect, url_for
-from models import *
+import models
 import tables
 
 app = Flask(__name__)
-
 app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://postgres:postgres@localhost:5432'
-db.init_app(app)
+
+with app.app_context():
+    models.db.init_app(app)
+    models.db.create_all()
+    models.db.session.commit()
+
+@app.route('/favicon.ico')
+def icon():
+    # return redirect('https://www.google.com/favicon.ico')
+    print('WEEEEEE')
+    return app.send_static_file('book.ico')
 
 @app.route('/')
 def home():
     return redirect('/books')
+
 
 @app.route('/<tabulka>', methods=['GET'])
 def database(tabulka):
