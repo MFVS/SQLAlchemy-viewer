@@ -12,17 +12,15 @@ with app.app_context():
 
 @app.route('/favicon.ico')
 def icon():
-    # return redirect('https://www.google.com/favicon.ico')
-    print('WEEEEEE')
     return app.send_static_file('book.ico')
 
 @app.route('/')
 def home():
-    return redirect('/books')
-
+    table_to_get = list(tables.get())[0] or 'not_found'
+    return redirect(str(table_to_get))
 
 @app.route('/<tabulka>', methods=['GET'])
-def database(tabulka):
+def table_view(tabulka):
     tables_list = tables.get()
     table = tables_list.get(tabulka)
     result = table.query.all()
