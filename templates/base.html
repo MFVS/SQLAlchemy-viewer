@@ -32,21 +32,30 @@
   <body style="background-color: #001220">
     <div class="dropdown">
       <button
-        class="btn btn-outline-dark dropdown-toggle"
-        type="button"
-        id="dropdownMenuButton1"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
+      class="btn btn-outline-dark dropdown-toggle"
+      type="button"
+      id="dropdownMenuButton1"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
       >
-        Tables
+      Tables
+    </button>
+    <form action="/insert", method="post">
+      <button
+          class="btn btn-outline-dark"
+          id="dropdownMenuInsertButton"
+          type="submit"
+      >
+        insert into table
       </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        {% for i in tables_list.keys() %}
-        <li>
-          <a class="dropdown-item" href="/{{i}}">{{ i[0]|upper}}{{i[1:] }}</a>
-        </li>
-        {% endfor %}
-      </ul>
+    </form>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      {% for i in tables_list.keys() %}
+      <li>
+        <a class="dropdown-item" href="/{{i}}">{{ i[0]|upper}}{{i[1:] }}</a>
+      </li>
+      {% endfor %}
+    </ul>
     </div>
     {% block body %}{% endblock body %}
 
